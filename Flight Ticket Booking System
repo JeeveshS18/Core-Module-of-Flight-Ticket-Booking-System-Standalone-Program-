@@ -1,0 +1,693 @@
+
+
+
+class Journey:
+    def __init__(self, journey_id, date, starting_time, journey_time, no_of_stops, layover, source_or_orgin, destination,
+                 food_provision, food_preference, flight, fair_of_ec, fair_of_bc, Passenger):
+        self.__journey_id = journey_id
+        self.__date = date
+        self.__starting_time = starting_time
+        self.__journey_time = journey_time
+        self.__no_of_stops = no_of_stops
+        self.__layover = layover
+        self.__source_or_orgin = source_or_orgin
+        self.__destination = destination
+        self.__food_provision = food_provision
+        self.__food_preference = food_preference
+        self.__flight = flight
+        self.__fair_of_ec = fair_of_ec
+        self.__fair_of_bc = fair_of_bc
+        self.__passenger = Passenger
+    def getPassenger(self):
+        return self.__passenger
+    def setPassenger(self, passenger):
+        self.__passenger.append(passenger)
+    def getJourneyId(self):
+        return self.__journey_id
+    def getDate(self):
+        return self.__date
+    def getStartingTime(self):
+        return self.__starting_time
+    def getJourneyTime(self):
+        return self.__journey_time
+    def getStops(self):
+        return self.__no_of_stops
+    def getLayover(self):
+        return self.__layover
+    def getSource(self):
+        return self.__source_or_orgin
+    def getDestination(self):
+        return self.__destination
+    def getFoodProvision(self):
+        return self.__food_provision
+    def getFoodPreference(self):
+        return self.__food_preference
+    def getFlight(self):
+        return self.__flight
+    def getEC_Price(self):
+        return self.__fair_of_ec
+    def getBC_Price(self):
+        return self.__fair_of_bc
+    def setFlight(self, flight):
+        self.__flight = flight
+    def getJourney_ID(self):
+        return self.__journey_id
+
+
+
+
+
+class Flight:
+    def __init__(self, flight_id, flight_type, class_category, operator):
+        self.__flight_id = flight_id
+        self.__class_category = class_category
+        self.__flight_type=flight_type
+        self.__operator = operator
+        self.__total_capacity = 0
+        self.__total_bc_capacity = 0
+        self.__total_ec_capacity = 0
+        self.__current_bc_capacity = 0
+        self.__current_ec_capacity = 0
+        self.__loadFlightStats()
+    def getFlightID(self):
+        return self.__flight_id
+    def getClassCategory(self):
+        return self.__class_category
+    def getFlightType(self):
+        return self.__flight_type
+    def getOperator(self):
+        return self.__operator
+
+
+    def __loadFlightStats(self):
+        print("loadFilghtStats:",self.__class_category)
+        for dict in self.__class_category:
+            if dict['category']=='Business':
+                self.__current_bc_capacity=dict['number_of_seats']
+                self.__total_bc_capacity =dict['number_of_seats']
+
+            if dict['category']=='Economy':
+                self.__total_ec_capacity = dict['number_of_seats']
+                self.__current_ec_capacity = dict['number_of_seats']
+
+        self.__total_capacity = self.__current_bc_capacity + self.__current_ec_capacity
+
+
+    def getFlightId(self):
+        return self.__flight_id
+    def getFlightType(self):
+        return self.__flight_type
+    def getTotalCapacity(self):
+        return self.__total_capacity
+    def setTotalCapacity(self, total_capacity):
+        self.__total_capacity = total_capacity
+    def getBC_Capacity(self):
+        return self.__total_bc_capacity
+    def getEC_Capacity(self):
+        return self.__total_ec_capacity
+    def getCurrentBC_Capacity(self):
+        return self.__current_bc_capacity
+    def getCurrentEC_Capacity(self):
+        return self.__current_ec_capacity
+    def getClassCategory(self):
+        return self.__class_category
+
+    def setCurrentEC_Capacity(self, ec_capacity):
+        self.__current_ec_capacity = ec_capacity
+
+    def setCurrentBC_Capacity(self, bc_capacity):
+        self.__current_bc_capacity = bc_capacity
+
+class Employee:
+    def __init__(self, employee_id, dob, name, doj, mobile_no, address, email_id, gender):
+        self.__employee_id = employee_id
+        self.__dob = dob
+        self.__name = name
+        self.__doj = doj
+        self.__mobile_no = mobile_no
+        self.__address = address
+        self.__email_id = email_id
+        self.__gender = gender
+
+
+class Pilot:
+    def __init__(self, licence_no, flight_hours, current_status, current_journey, exprience, languages):
+        self.__licence_no = licence_no
+        self.__flight_hours = flight_hours
+        self.__current_status = current_status
+        self.__current_journey = current_journey
+        self.__languages = languages
+        self.__exprience = exprience
+
+
+class Crew:
+    def __init__(self, exprience, current_status, current_journey, languages):
+        self.__exprience = exprience
+        self.__current_status = current_status
+        self.__current_journey = current_journey
+        self.__languages = languages
+
+
+class Location:
+    def __init__(self, location_code, location_name, country, state, district):
+        self.__location_code = location_code
+        self.__location_name = location_name
+        self.__country = country
+        self.__state = state
+        self.__district = district
+    def getLocationCode(self):
+        return self.__location_code
+    def getLocationName(self):
+        return self.__location_name
+    def getCountry(self):
+        return self.__country
+    def getState(self):
+        return self.__state
+    def getDistrict(self):
+        return self.__district
+
+class Passenger:
+    def __init__(self, passenger_name, proof_id, mobile_no, address, dob, id, pnr, seat, seat_class):
+        self.__passenger_name = passenger_name
+        self.__proof_id = proof_id
+        self.__mobile_no = mobile_no
+        self.__address = address
+        self.__dob = dob
+        self.__id = id
+        self.__pnr = pnr
+        self.__seat = seat
+        self.__seat_class = seat_class
+    def getpassenger(self):
+        return self.__passenger_name
+    def getproofid(self):
+        return self.__proof_id
+    def getmobileno(self):
+        return self.__mobile_no
+    def getaddress(self):
+        return self.__address
+    def getdob(self):
+        return self.__dob
+    def getid(self):
+        return self.__id
+    def getpnr(self):
+        return self.__pnr
+    def setpnr(self, pnr):
+        self.__pnr = pnr
+
+    def getseat(self):
+        return self.__seat
+    def setSeat(self, seat):
+        self.__seat = seat
+    def getSeatClass(self):
+        return self.__seat_class
+
+class Ticket:
+    def __init__(self, pnr, journey):
+        self.__pnr = pnr
+        self.__journey = journey
+
+def showOptions():
+    print("Select Your Option")
+    print("1. Book Tickets")
+    print("2. See Details")
+    # user_choice = input("Enter Your Choice: ")
+    while True:
+        user_inputs = input("Enter Your Choice: (1/2): ")
+        if user_inputs in ['1']:
+            return user_inputs
+            #break
+        elif user_inputs in ['2']:
+            return user_inputs
+        else:
+            print("Invalid input. Please enter '1' or '2'.")
+
+
+def getTicketDetails():
+        user_Pnr = input("Enter your PNR number: ")
+        #try:
+            #if user_inputs == 2:
+             #   raise ValueError("The number 2 is not allowed")
+           # print("You entered: ", user_inputs)
+           # print("The number 2 is not allowed")
+       # except ValueError as ve:
+        #    print("ValueError: ", ve)
+        try:
+            pnr_available=False
+            for journey in my_journey:
+                for passenger_list in journey.getPassenger():
+                    for passenger in passenger_list:
+                        if passenger.getpnr() == user_Pnr:
+                            # print("user Pnr:",user_Pnr)
+                            pnr_available=True
+                            print("Passenger Name: ", passenger.getpassenger())
+                            print("PNR Number: ", passenger.getpnr())
+                            print("Seat Number: ", passenger.getseat())
+                            print("Source: ", journey.getSource())
+                            print("Destination", journey.getDestination())
+                            print("Layovers: ", journey.getLayover())
+                            print("Identification Proof: ", passenger.getproofid())
+                            print("Mobile Number: ", passenger.getmobileno())
+                            print("Address: ", passenger.getaddress())
+                            print("Your Journey Date: ", user_selected_date)
+            if pnr_available==False:
+                print("No records for the given PNR:")
+                showOptions()
+        except Exception as e:
+            print(f"Please try booking ticket first")
+            user_inputs=showOptions()
+        
+user_inputs = showOptions()
+if user_inputs=='1':
+    print("Have a safe journey")
+
+    location1 = Location("1220", "Chennai", "India", "Tamilnadu", "Chennai")
+    location2 = Location("1221", "Mumbai", "India", "Maharastra", "Mumbai")
+    location3 = Location("1222", "New Delhi", "India", "Delhi", "New Delhi")
+    location4 = Location("1223", "Karnataka", "India", "Benguluru", "Karnataka")
+    location5 = Location("1224", "Madurai", "India", "TamilNadu", "Madurai")
+    location6 = Location("1225", "Coimbatore", "India", "TamilNadu", "Coimbatore")
+    my_list = [location1, location2, location3, location4, location5, location6]
+
+    print("Journey From: ")
+
+    while True:
+        counter = 1
+        for element in my_list:
+            print(counter, ".", element.getLocationName())
+            counter += 1
+        try:
+            source = int(input("Select your source: "))
+            # selected_location = input("Select a location from the following options: {}\n".format(list))
+
+            if source > 0 and source < 7:
+                source = my_list[source - 1].getLocationName()
+                break
+            else:
+                print("Invalid input. Please enter '1' To '6'.")
+        except ValueError:
+                print("Invalid input. Please enter a valid integer between 1 and 6.")
+
+    print("Journey To: ")
+    while True:
+        counter = 1
+        for element in my_list:
+            if (source != element.getLocationName()):
+                print(counter, ".", element.getLocationName())
+            counter += 1
+        try:
+            destination = int(input("Select your Destination: "))
+
+            if destination > 0 and destination < 5:
+                destination = my_list[destination - 1].getLocationName()
+                break
+            else:
+                print("Invalid input. Please enter '1' To '4'.")
+        except ValueError:
+                    print("Invalid input. Please enter a valid integer between 1 and 4.")
+
+    #destination = my_list[destination - 1].getLocationName()
+
+    import datetime
+
+    flight1_class_Ec_dict = {"number_of_seats": 35, "category": "Economy"}
+    flight1_class_Bc_dict = {"number_of_seats": 35, "category": "Business"}
+
+    flight1_category = [flight1_class_Ec_dict, flight1_class_Bc_dict]
+
+    flight1 = Flight(1221, "", flight1_category, "Jake")
+    flight2 = Flight(1212, "", flight1_category, "Mike")
+    flight3 = Flight(1213, "", flight1_category, "Mara")
+    flight4 = Flight(1214, "", flight1_category, "Tyr")
+
+    journey1 = Journey(2010, datetime.date(2024, 4, 12), "11:30", 60, 0, "null", "Chennai", "Mumbai", "Yes/No",
+                       "Veg/Non-Veg", flight1, 2219, 5599, [])
+    journey2 = Journey(2011, datetime.date(2024, 4, 12), "12:30", 75, 0, "null", "Chennai", "New Delhi", "Yes/No",
+                       "Veg/Non-Veg", flight2, 5519, 8769, [])
+    journey3 = Journey(2012, datetime.date(2024, 4, 13), "11:30", 60, 0, "null", "Chennai", "Karnataka", "Yes/No",
+                       "Veg/Non-Veg", flight3, 8769, 10081,[])
+    journey4 = Journey(2013, datetime.date(2024, 4, 14), "10:10", 120, 0, "null", "Karnataka", "New Delhi", "Yes/No",
+                       "Veg/Non-Veg", flight4, 5519, 8176, [])
+    journey5 = Journey(2014, datetime.date(2024, 4, 12), "11:00", 60, 0, "null", "Chennai", "Mumbai", "Yes/No",
+                       "Veg/Non-Veg", flight1, 2219, 5599, [])
+    journey6 = Journey(2015, datetime.date(2024, 4, 12), "1:00", 80, 0, "1", "Madurai", "Chennai", "Yes/No",
+                       "Veg/Non-Veg", flight1, 6000, 12000, [])
+   # flight1_class_Ec_dict = {"price": journey1.getEC_Price(), "number_of_seats": 35, "category": "Economy"}
+   # flight1_class_Bc_dict = {"price": journey2.getBC_Price(), "number_of_seats": 35, "category": "Business"}
+
+   # flight1_category = [flight1_class_Ec_dict, flight1_class_Bc_dict]
+
+    my_journey = (journey1, journey2, journey3, journey4, journey5, journey6)
+
+
+    print("Select Your Option ")
+    # counter = 1
+    # for j in my_journey:
+    #     print(counter, ".", j.journey_id)
+    #     counter += 1
+    # journey_Details = input("Enter Your Choice:")
+    # def display_details(input_data):
+    #     if input_data in my_journey:
+    #         print(my_journey[input_data])
+    #     else:
+    #         print("No details found for this input.")
+    #
+    # user_input = input("Enter your input: ")
+    #
+    # display_details(user_input)
+    print("Select Your Date Of Journey ")
+    import datetime
+
+    start = datetime.date(2024, 4, 12)
+    date_format = "%Y-%m-%d"
+    n = 10
+    res = []
+    for day in range(n):
+        date = (start + datetime.timedelta(days=day)).isoformat()
+        res.append(date)
+    print("n dates in list ", str(res))
+    while True:
+        counter = 1
+        for days in res:
+            print(counter, ".", days)
+            counter += 1
+        try:
+            user_selected_date = int(input("Select Your Date Of Journey: "))
+
+            if user_selected_date > 0 and user_selected_date < 11:
+                user_selected_date = res[user_selected_date - 1]
+                break
+            else:
+                print("Invalid input. Please enter '1' To '10'.")
+        except ValueError:
+                    print("Invalid input. Please enter a valid integer between 1 and 10.")
+    #user_selected_date = res[user_selected_date - 1]
+
+    matching_journey = []
+
+
+    def Check_availability(my_journey):
+        for i in my_journey:
+            print("")
+            print("source:", source)
+            #print("i.getSource():", i.getSource())
+            print("destination:", destination)
+            #print("i.getDestination():", i.getDestination())
+            print("user_selected_date:", user_selected_date)
+            #print("i.getDate():", i.getDate())
+            #print("i.getDate():", (i.getDate()))
+            #print("user_selected_date:", user_selected_date)
+            print("user_selected_date:", datetime.datetime.strptime(user_selected_date, date_format))
+            datetime_object = datetime.datetime.combine(i.getDate(), datetime.datetime.min.time())
+            formatted_date = datetime_object.strftime(date_format)
+            print("user_selected_date: ", datetime.datetime.strptime(user_selected_date, date_format).strftime(date_format))
+
+            print("formatted_date: ", formatted_date)  # Output: Current date in the specified format
+            # print("i.getDate():", i.getDate())
+
+
+            if (
+                    i.getSource() == source and i.getDestination() == destination and formatted_date == datetime.datetime.strptime(
+                    user_selected_date, date_format).strftime(date_format)):
+                # print(i.getLocationName())
+                # print(i.getLocationName())
+                # print(res[user_selected_date-1])
+                matching_journey.append(i)
+            else:
+                print("Not matched")
+
+
+    Check_availability(my_journey)
+    print("Below are the matching journeys for your search: ")
+    counter = 1
+    for journey in matching_journey:
+        # print("Source:", journey.getSource())
+        # print("Destination:", journey.getDestination())
+
+        print(counter, ". Operator :", journey.getFlight().getClassCategory()[0]['number_of_seats'])
+        # print("Total Economy Class Seats :", journey.getFlight().getClassCategory()[0]['number_of_seats'])
+        # print("Total Business Class Seats :", journey.getFlight().getClassCategory()[1]['number_of_seats'])
+        print("Source:", journey.getSource())
+        print("Destination:", journey.getDestination())
+        print("Current Economy Class Seats :", journey.getFlight().getClassCategory()[0]['number_of_seats'])
+        print("Current Business Class Seats :", journey.getFlight().getClassCategory()[1]['number_of_seats'])
+        print("Price Of Economy Class :", journey.getEC_Price())
+        #print("Price Of Economy Class :", journey.getEC_Price()['price'])
+        print("Price Of Business Class :", journey.getBC_Price())
+        #print("Price Of Business Class :", journey.getBC_Price()['price'])
+        print(journey.getEC_Price())
+        print("Date of the flight :", journey.getDate())
+        counter = counter + 1
+
+    selected_journey = int(input("Please select your journey:"))
+    selected_journey = matching_journey[selected_journey - 1]
+    print(type(selected_journey))
+    while True:
+        try:
+            book_tickets1 = int(input("How Many Economy Tickets: "))
+            book_tickets2 = int(input("How Many Business Tickets: "))
+            # if book_tickets1 > flight1_class_Ec_dict["number_of_seats"] and book_tickets2 > flight1_class_Bc_dict["number_of_seats"] and book_tickets1 < 1 and book_tickets2 < 1 and book_tickets1 > flight1_class_Ec_dict["number_of_seats"] and book_tickets2 > flight1_class_Bc_dict["number_of_seats"]:
+            if (book_tickets1 < 0 or book_tickets2 < 0):
+                print("The number you have entered is invalid. Please try again.")
+            elif ((book_tickets1 + book_tickets2) == 0):
+                print("The number you have entered is invalid. Please try again.")
+            elif book_tickets1 > flight1_class_Ec_dict["number_of_seats"]:
+                print("The number you have entered is not available for Economy class. Please enter lesser number.")
+            elif book_tickets2 > flight1_class_Bc_dict["number_of_seats"]:
+                print("The number you have entered is not available for Business class. Please enter lesser number.")
+            else:
+                print("The number of tickets you entered is valid.")
+                total_cost = (journey.getEC_Price() * book_tickets1) + (
+                        journey.getBC_Price() * book_tickets2)
+
+                print("Total Cost:", total_cost)
+                break
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+    passenger = ""
+    passenger_list = []
+    for eco_pass in range(0, book_tickets1):
+        passengers = input(
+            "Enter The passenger Details(Name: || DOB: || Mobile no:  || Address:  || Identification Proof(Aadhar, Driving Licence, Voter ID))")
+        split = passengers.split('||')
+        print(split)
+        p_name = ''
+        p_dob = ''
+        p_mobile_no = ''
+        p_address = ''
+        p_id = ''
+        p_pnr = ''
+        p_seat = ''
+        p_seat_class = ''
+
+        counter = 1
+        for splits in split:
+            print(splits)
+            if counter == 1:
+                p_name = splits
+            if counter == 2:
+                p_dob = splits
+            if counter == 3:
+                p_mobile_no = splits
+            if counter == 4:
+                p_address = splits
+            if counter == 5:
+                p_id = splits
+            counter += 1
+
+        passenger1 = Passenger(p_name, p_id, p_mobile_no, p_address, p_dob, p_pnr, p_seat, p_seat_class, counter)
+        passenger_list.append(passenger1)
+
+    for buss_pass in range(0, book_tickets2):
+        passengers = input(
+            "Enter The passenger Details(Name: || DOB: || Mobile no:  || Address:  || Identification Proof(Aadhar, Driving Licence, Voter ID))")
+        split = passengers.split('||')
+        print(split)
+        p_name = ''
+        p_dob = ''
+        p_mobile_no = ''
+        p_address = ''
+        p_id = ''
+        p_pnr = ''
+        p_seat = ''
+        p_seat_class = ''
+
+        counter = 1
+        for splits in split:
+            print(splits)
+            if counter == 1:
+                p_name = splits
+            if counter == 2:
+                p_dob = splits
+            if counter == 3:
+                p_mobile_no = splits
+            if counter == 4:
+                p_address = splits
+            if counter == 5:
+                p_id = splits
+            counter += 1
+
+        passenger1 = Passenger(p_name, p_id, p_mobile_no, p_address, p_dob, p_pnr, p_seat, p_seat_class, counter)
+        passenger_list.append(passenger1)
+    selected_journey.setPassenger(passenger_list)
+    print("Please Confirm Your Details ")
+    print("Source: ", journey.getSource())
+    print("Destination: ", journey.getDestination())
+    # print("Price Of Economy Class:", journey.getFlight().getClassCategory()[0]['price'])
+    # print("Price Of Business Class:", journey.getFlight().getClassCategory()[1]['price'])
+    for i in passenger_list:
+        print(i.getpassenger(), i.getdob(), i.getmobileno(), i.getaddress())
+
+    # print(passengers)
+    # print(passenger)
+    print("Your Total Bill Is ", total_cost)
+
+    while True:
+        user_input = input("Do you want to proceed? (yes/no): ")
+        if user_input in ['1']:
+            print("User choose to proceed.")
+            break
+        elif user_input in ['0']:
+            print("User choose not to proceed.")
+            break
+        else:
+            print("Invalid input. Please enter '1' or '0'.")
+
+    import random
+    import string
+
+
+    def generate_pnr(length=6):
+        """Generate a random alphanumeric PNR of given length."""
+        characters = string.ascii_uppercase + string.digits
+        pnr = ''.join(random.choices(characters, k=length))
+        return pnr
+
+
+    # Example usage:
+    # print("passenger Name: ",p_name)
+    # print("Your Seat Number is: 2")
+    # print("Your PNR number is: ",generate_pnr())
+
+    for i in passenger_list:
+        print(i.getpassenger(), i.getdob(), i.getmobileno(), i.getaddress())
+
+    flight = journey.getFlight()
+    flight.setCurrentEC_Capacity(flight.getCurrentEC_Capacity() - book_tickets1)
+    journey.setFlight(flight)
+    print("Current EC Seat Capacity: ", flight.getCurrentEC_Capacity())
+    flight.setCurrentBC_Capacity(flight.getCurrentBC_Capacity() - book_tickets2)
+    journey.setFlight(flight)
+    print("Current BC Seat Capacity: ", flight.getCurrentBC_Capacity())
+    flight.setTotalCapacity(flight.getCurrentBC_Capacity() + flight.getCurrentEC_Capacity())
+    journey.setFlight(flight)
+    print("Final: ", flight.getTotalCapacity())
+
+
+    # total_seats = (journey.getFlight().getBC_Capacity()- book_tickets1)
+    # print("Total Seats: ", total_seats)
+
+    def generate_seat_numbers(start, count):
+        return [start + i for i in range(count)]
+
+
+    # def generate_pnr(length=6):
+    #   characters = string.ascii_uppercase + string.digits
+    #  return ''.join(random.choices(characters, k=length))
+
+    seat_start = 0
+
+    pnr = generate_pnr()
+
+    for i in range(book_tickets1):
+        seat_start = seat_start + 1
+        passenger_list[i].setpnr(pnr)
+        passenger_list[i].setSeat(seat_start)
+        passenger_list[i].Passenger_seat_class = "Economy"
+        # print("Passenger Name: " ,passenger_list[i].getpassenger())
+        # print("Seat Number: " ,seat_number)
+        # print("Flight ID: " ,journey.getFlight().getFlightID())
+        # print("PNR: " ,pnr)
+    seat_start = 0
+    for i in range(book_tickets2):
+        # pnr = generate_pnr()
+        seat_start = seat_start + 1
+        passenger_list[book_tickets1 + i].setpnr(pnr)
+        passenger_list[book_tickets1 + i].setSeat(seat_start)
+        passenger_list[book_tickets1 + i].Passenger_seat_class = "Business"
+        # print("Passenger Name: ", passenger_list[i].getpassenger())
+        # print("Seat Number: ", seat_number)
+        # print("Flight ID: ", journey.getFlight().getFlightID())
+        # print("PNR: ", pnr)
+
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+    import os
+    import platform
+
+
+    def create_user_pdf(ticket_info, filename):
+        c = canvas.Canvas(filename, pagesize=letter)
+        width, height = letter
+
+        c.setFont("Helvetica", 12)
+        c.drawString(100, height - 40, "Ticket Information")
+        y_position = height - 80
+        for key, value in ticket_info.items():
+            c.drawString(100, y_position, f"{key}: {value}")
+            y_position -= 20
+
+        c.save()
+
+        def print_pdf(filename):
+            system = platform.system()
+            if system == "Windows":
+                os.startfile(filename, "print")
+            else:
+                raise OSError("Unsupported operating system: ", system)
+
+
+    ticket_file_counter = 1
+    for passenger in passenger_list:
+        ticket = Ticket(passenger.getpnr(), my_journey)
+        print("Ticket for :", passenger.getpassenger())
+        print("PNR: ", ticket._Ticket__pnr)
+        print("Flight ID: ", journey.getJourney_ID())
+        print("Seat Number: ", passenger.getseat())
+        print("Your Journey Date", user_selected_date)
+        print("Have a safe journey!")
+        ticket_info = {
+            "Name": passenger.getpassenger(),
+            "PNR Number": passenger.getpnr(),
+            "Seat Number": passenger.getseat(),
+            "Source": journey.getSource(),
+            "Destination": journey.getDestination(),
+            "Starting Time": journey.getStartingTime(),
+            "Journey ID": journey.getJourney_ID(),
+            "Date": user_selected_date,
+            "Identification Proof": passenger.getproofid(),
+            "Mobile Number": passenger.getmobileno(),
+            "Address": passenger.getaddress()
+
+        }
+        pdf_filename = "ticket_" + str(ticket_file_counter) + ".pdf"
+        ticket_file_counter = ticket_file_counter + 1
+        create_user_pdf(ticket_info, pdf_filename)
+        print(pdf_filename)
+        print("")
+    print("1. Book Tickets")
+    print("2. See Details")
+    # user_choice = input("Enter Your Choice: ")
+    while True:
+        user_inputs = input("Enter Your Choice: (1/2): ")
+        if user_inputs in ['1']:
+            break
+        elif user_inputs in ['2']:
+            break
+        else:
+            print("Invalid input. Please enter '1' or '2'.")
+    if user_inputs == '2':
+        getTicketDetails()
+else:
+    print("in show options else")
+    getTicketDetails()
